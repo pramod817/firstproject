@@ -18,29 +18,8 @@ registryCredential = 'Docker'
           }
         }
         
-        stage('SonarQube analysis') {
-          steps{
-            withSonarQubeEnv('sonarqube') { 
-              bat 'mvn sonar:sonar'
-            }
-          }
-        }
+
         
-        stage ('Artifactory') {
-          steps {
-            rtUpload (
-              serverId: 'jfrog', 
-                spec: """{
-                  "files": [
-                    {
-                      "pattern": "*/*.war",
-                      "target": "firstproject/"
-                    }
-                  ]
-                }"""
-            )
-          }
-        }
         stage('Building image') {
 
  
