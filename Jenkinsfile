@@ -57,7 +57,7 @@ stage('Push image to dockerhub') {
 steps{
 
  
-bat "docker push vkgarg/vinit:%BUILD_NUMBER%"
+bat "docker push pramdoc/kproject:%BUILD_NUMBER%"
 
  
 }
