@@ -32,5 +32,37 @@ pipeline {
             )
           }
         }
+        stage('Building image') {
+
+ 
+steps{
+
+ 
+script {
+
+ 
+dockerImage= docker.build registry + ":$BUILD_NUMBER"
+
+ 
+}
+
+ 
+}
+
+ 
+}
+
+stage('Push image to dockerhub') {
+
+steps{
+
+ 
+bat "docker push vkgarg/vinit:%BUILD_NUMBER%"
+
+ 
+}
+
+ 
+}
       }
 }
