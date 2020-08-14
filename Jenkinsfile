@@ -1,7 +1,16 @@
 pipeline {
 
       agent any
-     
+      environment {
+
+ 
+registry = "pramdoc/kproject"
+
+ 
+registryCredential = 'Docker'
+
+ 
+}
       stages{
         stage('Build') {
           steps{
