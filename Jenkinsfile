@@ -4,6 +4,7 @@ pipeline {
       environment {
             registry = "pramdoc/kproject"
             registryCredential = 'Docker'
+            dockerImage = ''
       }
       stages{
         stage('Build') {
@@ -22,17 +23,13 @@ pipeline {
            }
          }
             
-         stage('Push image') {
-               steps{
-         withCredentials([usernamePassword( credentialsId: 'Docker', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
-        def registry_url = "registry.hub.docker.com/"
-        bat "docker login -u $USER -p $PASSWORD ${registry_url}"
-        docker.withRegistry("http://${registry_url}", "Docker") {
-            // Push your image now
-            bat "docker push pramdoc/kproject:%BUILD_NUMBER%"
-        }
-    }
+         stage('Deploy our image') {
+steps{
+script {
+docker.withRegistry( '', registryCredential ) {
+dockerImage.push()
 }
-         }
+}
+}
       }
 }
