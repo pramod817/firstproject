@@ -24,8 +24,7 @@ pipeline {
             
          stage('Push image to dockerhub') {
       
-               steps{
-                     bat "docker login --username 'pramdoc' --password 'pramodchaturvedi'"
+               withDockerRegistry([ credentialsId: "Docker", url: "" ]){
                      bat "docker push pramdoc/kproject:%BUILD_NUMBER%"
                }
          }
