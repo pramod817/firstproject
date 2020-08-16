@@ -26,8 +26,7 @@ pipeline {
          stage('Deploy our image') {
                steps{
                      script {
-                           docker.withRegistry( '', registryCredential ) {
-                                 dockerImage.push()
+                           bat "docker push pramdoc/kproject:%BUILD_NUMBER%"
                            }
                      }
                 }
