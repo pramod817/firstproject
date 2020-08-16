@@ -23,6 +23,7 @@ pipeline {
          }
             
          stage('Push image to dockerhub') {
+               bat "docker login -u 'pramdoc' -p 'pramodchaturvedi' 'registry.hub.docker.com'"
                steps{
                      bat "docker push pramdoc/kproject:%BUILD_NUMBER%"
                }
