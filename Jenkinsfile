@@ -24,12 +24,13 @@ pipeline {
          }
             
          stage('Deploy our image') {
-steps{
-script {
-docker.withRegistry( '', registryCredential ) {
-dockerImage.push()
-}
-}
-}
+               steps{
+                     script {
+                           docker.withRegistry( '', registryCredential ) {
+                                 dockerImage.push()
+                           }
+                     }
+                }
       }
+   }
 }
