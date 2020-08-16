@@ -23,8 +23,12 @@ pipeline {
          }
             
          stage('Push image to dockerhub') {
-               bat "docker login -u 'pramdoc' -p 'pramodchaturvedi' 'registry.hub.docker.com'"
+               
                steps{
+                     def registry_url = "registry.hub.docker.com/" 
+                     def user = "pramdoc"
+                     def pass = "pramodchaturedi"
+                     bat "docker login -u ${user} -p ${pass} ${registry_url}"
                      bat "docker push pramdoc/kproject:%BUILD_NUMBER%"
                }
          }
