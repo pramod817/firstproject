@@ -25,10 +25,10 @@ pipeline {
             
          stage('Deploy our image') {
                steps{
-                     script {
+            
                            bat "docker push pramdoc/kproject:%BUILD_NUMBER%"
                            }
-                     }
+                     
                 }
       }
    }
